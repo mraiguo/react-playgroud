@@ -1,0 +1,14 @@
+// mixins.less
+.bg-mixin(@color) { // 没有被用到的 mixin，使用 reference 后会被 tree-shaking 掉
+  background-color: @color;
+}
+
+.my-mixin-class { // 普通的 class，使用 reference 后会被 tree-shaking 掉
+  font-size: 12px;
+  padding: 10px;
+}
+
+.text-mixin(@color) { // 被使用的 mixin, 不会被 tree-shaking 掉
+  color: @color;
+}
+
