@@ -30,7 +30,7 @@ const Preview: React.FC = () => {
       // plugins: [transformImportSourcePlugin]
     });
 
-    const t = iframeRaw.replace('<ToBeReplace />', res.code as string)
+    const t = iframeRaw.replace('// ---ToBeReplace---', res.code as string)
     setIframeUrl(URL.createObjectURL(new Blob([t], { type: 'text/html' })))
   }
 
@@ -41,7 +41,9 @@ const Preview: React.FC = () => {
         defaultLanguage="javascript"
         onChange={handleEditorChange}
         defaultValue={`
-        <div> App </div>
+          const App = () => {
+            return <span>app</span>
+          };
         `}
         onMount={handleEditorDidMount} />
       <iframe
