@@ -13,6 +13,15 @@ const Preview: React.FC = () => {
 
   function handleEditorDidMount(editor: any,) {
     editorRef.current = editor;
+    const value = editor.getValue();
+    const res = transform(value, {
+      presets: ['react', 'typescript'],
+      filename: '0000.tsx',
+      // plugins: [transformImportSourcePlugin]
+    });
+    const t = iframeRaw.replace('// ---ToBeReplace---', res.code as string)
+    console.log('%c [ 0000 t ]:', 'font-size:13px; background:pink;', t)
+    setIframeUrl(URL.createObjectURL(new Blob([t], { type: 'text/html' })))
   }
 
   // const transformImportSourcePlugin: PluginObj = {
